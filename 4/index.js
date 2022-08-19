@@ -101,8 +101,8 @@ const hero = {
             }
         })
         const choice = +read.question('Введите цифру действия\n\n');
-        if (choice >= this.moves.length || choice < 0 || choice === NaN) {
-            this.choiceMove();
+        if (choice >= this.moves.length || choice < 0 || choice === NaN || this.moves[choice].nowCooldown !== 0) {
+            return this.choiceMove();
         } else {
             this.moves[choice].nowCooldown = this.moves[choice].cooldown;
             return this.moves[choice];
@@ -123,19 +123,19 @@ function choiceMode() {
     const choice = read.question('Выберите сложность \n 1 - Easy \n 2 - Normal \n 3 - Hard \n\n')
     switch (choice) {
         case '1':
-            hero.maxHealth = 100;
+            hero.maxHealth = 20;
             console.log('\nВыбран легкий режим.');
             break;
         case '2':
-            hero.maxHealth = 50;
+            hero.maxHealth = 15;
             console.log('\nВыбран нормальный режим.');
             break;
         case '3':
-            hero.maxHealth = 25;
+            hero.maxHealth = 10;
             console.log('\nВыбран сложный режим.');
             break;
         case '0':
-            hero.maxHealth = 10;
+            hero.maxHealth = 5;
             console.log('\nВыбран секретный режим,\nпоможет только удача...');
             break;
         default:
